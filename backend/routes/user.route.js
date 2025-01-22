@@ -1,8 +1,15 @@
 const router=require('express').Router()
+const { route } = require('../app')
 const userController=require('../controllers/user.controller')
-
+const authMiddleware=require('../middlewares/auth.middleware')
 router.post('/register',userController.register)
 
 router.post('/login',userController.login)
-
+router.post('/postCreate',authMiddleware,userController.postCreate)
+router.get('/getPosts',authMiddleware,userController.getPosts)
+router.post('/post/:id',authMiddleware,userController.likepost)
+router.post('/comment/:id',authMiddleware,userController.comment)
+router.get('/comment/:id',userController.getComments)
+router.get('/trendingPosts',userController.trendingPosts)
+router.get('/notifications',authMiddleware,userController.notifications)
 module.exports=router
