@@ -1,12 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import img from '../assets/ellipse-6512782_1280.jpg'
 import { useNavigate } from 'react-router-dom'
+import io from 'socket.io-client'
+import { useState } from 'react'
+import { useSocket } from '../context/SocketContext'
+
 const Login = () => {
-  const [email, setEmail] = React.useState('')
-  const [password, setPassword] = React.useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [userId,setUserId]=useState('')
+  const socket=useSocket()
   const navigate=useNavigate()
+
+  useEffect(() => {
+    if (socket && userId) {
+        socket.emit('newUser', userId);
+    }
+}, [socket, userId]);
   const submitHandler = async (e) => {
     e.preventDefault()
     console.log(email, password)
@@ -19,8 +31,8 @@ const Login = () => {
       )
       if (res.status === 200) {
         localStorage.setItem('token', res.data.token)
+        setUserId(res.data.id)
         navigate('/home')
-        // console.log(res.data.user)
 
         console.log('User found Successfully')
       } else {

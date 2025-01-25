@@ -14,11 +14,4 @@ const calculateTimeSpan = (createdAt) => {
     return `${diffSec} second(s) ago`;
 };
 
-// const truncateDescription=(description)=>{
-//     if(description.length>10){
-//         return description.substring(0,10)+'...';
-//     }else{
-//         return description;
-//     }
-// }
 module.exports = { calculateTimeSpan};

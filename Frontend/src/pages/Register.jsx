@@ -1,16 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import img from '../assets/ellipse-6512782_1280.jpg'
+import { useSocket } from '../context/SocketContext'
 const Register = () => {
   const [username, setName] = React.useState('')
   const [email, setEmail] = React.useState('')
   const [password, setPassword] = React.useState('')
-  const navigate=useNavigate()
+  const [userId, setUserId] = useState('')
+  const navigate = useNavigate()
+  const socket = useSocket()
+
+  useEffect(() => {
+    console.log("socket",socket)
+    console.log("userid",userId)
+    if (socket && userId) {
+      socket.emit('newUser', userId);
+    }
+  }, [socket, userId]);
   const submitHandler = async (e) => {
     e.preventDefault()
-    console.log(name, email, password)
     const data = {
       username,
       email,
@@ -20,6 +30,7 @@ const Register = () => {
       const res = await axios.post('http://localhost:3000/user/register', data)
       if (res.status === 200) {
         localStorage.setItem('token', res.data.token)
+        setUserId(res.data.id)
         navigate('/home')
         console.log('User Registered Successfully')
       } else {
@@ -82,7 +93,7 @@ const Register = () => {
       </div>
 
     </div>
-      )
+  )
 }
 
-      export default Register
+export default Register

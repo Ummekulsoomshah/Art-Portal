@@ -65,7 +65,6 @@ const CreatePost = () => {
                         </label>
                         <input
                             required
-                            // value={resume}
                             onChange={(e) => { setImage(e.target.files[0]) }}
                             type="file"
                             id="image"

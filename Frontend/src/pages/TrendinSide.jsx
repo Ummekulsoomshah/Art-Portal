@@ -17,11 +17,7 @@ const TrendinSide = () => {
       try {
         const res = await axios.get('http://localhost:3000/user/trendingPosts')
         if(res.status===200){
-          console.log('Trending Posts fetched successfully')
           setTrendingPosts(res.data.trendingPostsData)
-          console.log(typeof(res.data.trendingPostsData))
-          console.log(res.data.trendingPostsData)
-          console.log("trendingPosts",trendingPosts)
         }else{
           console.log('Error')
 
@@ -55,18 +51,6 @@ const TrendinSide = () => {
           </li>
 
  {trendingPosts.map((trendingPost)=>( 
-
-          // <li>
-
-
-          //   <div class="w-full bg-white border border--t-gray-200 flex g-1 shadow dark:bg-gray-800 dark:border-gray-700">
-          //     <div class="flex w-full items-center p-4 bg-white dark:bg-gray-700 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-          //       <h1 className="text-2xl text-white flex-1 ms-3 whitespace-nowrap">{trendingPost.author}</h1>
-          //       <p class='text-gray-900'>{trendingPost.likes_count}<span>likes</span></p>
-
-          //     </div>
-          //   </div>
-          // </li>
           <li
               key={trendingPost.id}
               className="flex items-center p-4 bg-white dark:bg-gray-700 rounded-lg shadow-md hover:shadow-lg transition-shadow"
@@ -86,7 +70,6 @@ const TrendinSide = () => {
               </div>
               <button
                 className="ml-4 px-4 py-2 text-white text-bold rounded-lg "
-                // onClick={() => console.log(`Viewing post ${post.post_id}`)}
               >
                 . . .
               </button>
