@@ -3,6 +3,10 @@
 Welcome to **ArtConnect**, the ultimate platform for artists, art lovers, and collectors to connect, showcase, and trade stunning artworks. Dive into a vibrant community and let your creativity flourish!
 
 ---
+
+https://github.com/user-attachments/assets/85bc4eb6-7d9d-488a-8285-76a1695d6073
+
+
 The project is built on React.js,Tailwind css on frontend and Node.js,Express on backend and Mysql for database.
 ## 🔧 Features
 
